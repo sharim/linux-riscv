@@ -771,6 +771,20 @@
 			};
 		};
 
+		lpc: lpc-host-controller@7008000000 {
+			compatible = "smart-dv,lpc";
+			#address-cells = <1>;
+			#size-cells = <1>;
+			reg = <0x70 0x08000000 0x0 0x40>;
+			clocks = <&div_clk GATE_CLK_AHB_LPC>;
+			clock-names = "clk_gate_ahb_lpc";
+			clock-frequency = <200000000>;
+			interrupt-controller;
+			interrupt-parent = <&intc>;
+			interrupts = <SOC_PERIPHERAL_IRQ(107) IRQ_TYPE_LEVEL_HIGH>;
+			interrupt-names = "lpcirq";
+		};
+
                 spi0: spi@7040004000 {
 			compatible = "snps,dw-apb-ssi";
 			#address-cells = <1>;

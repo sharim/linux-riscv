@@ -133,6 +133,14 @@ __io_writes_outs(outs, u64, q, __io_pbr(), __io_paw())
 #define outsq(addr, buffer, count) __outsq(PCI_IOBASE + (addr), buffer, count)
 #endif
 
+#if defined(CONFIG_ARCH_SOPHGO)
+extern unsigned char lpc_inb(unsigned int port);
+extern void lpc_outb(unsigned char b, unsigned int port);
+#define inb_p	inb
+#define inb		lpc_inb
+#define outb	lpc_outb
+#endif
+
 #include <asm-generic/io.h>
 
 #ifdef CONFIG_MMU
